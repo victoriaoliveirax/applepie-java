@@ -1,4 +1,4 @@
-DESAFIO - ROTINA DE CŔEDITO - PACTO MAIS
+PROJETO PRÁTICO - ROTINA DE CŔEDITO - PACTO MAIS
 
 DESCRIÇÃO DO CASO: Rotinas de transação de crédito
 Você irá implementar um controle de transação de credito em conta com cartão obedecendo as seguintes regras:
