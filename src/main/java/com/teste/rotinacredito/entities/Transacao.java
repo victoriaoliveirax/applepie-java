@@ -3,6 +3,7 @@ package com.teste.rotinacredito.entities;
 import jakarta.persistence.*;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Entity
 @Table(name="transacao")
@@ -11,18 +12,29 @@ public class Transacao {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn
     public Conta conta;
     @Enumerated(EnumType.STRING)
     public TipoOperacao tipoOperacao;
 
     public Date dataTransacao;
 
-    public Transacao(Long id, Conta conta, TipoOperacao tipoOperacao, Date dataTransacao) {
+    public Double valor;
+
+    public Transacao(Long id, Conta conta, TipoOperacao tipoOperacao, Date dataTransacao, Double valor) {
         this.id = id;
         this.conta = conta;
         this.tipoOperacao = tipoOperacao;
         this.dataTransacao = dataTransacao;
+        this.valor = valor;
+    }
+
+    public Transacao(Conta conta, TipoOperacao tipoOperacao, Date dataTransacao, Double valor) {
+        this.conta = conta;
+        this.tipoOperacao = tipoOperacao;
+        this.dataTransacao = dataTransacao;
+        this.valor = valor;
     }
 
     public Transacao() {
@@ -64,6 +76,14 @@ public class Transacao {
         this.conta = conta;
         this.tipoOperacao = tipoOperacao;
         this.dataTransacao = dataTransacao;
+    }
+
+    public Double getValor() {
+        return valor;
+    }
+
+    public void setValor(Double valor) {
+        this.valor = valor;
     }
 
 

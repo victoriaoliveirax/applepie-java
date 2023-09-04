@@ -1,6 +1,12 @@
 package com.teste.rotinacredito.entities;
 
+
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
+import java.util.List;
 
 @Entity
 @Table(name="conta")
@@ -8,12 +14,20 @@ public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     public Long id;
+    @Column(unique=true, columnDefinition = "serial", updatable = false)
+    @Generated(GenerationTime.INSERT)
+    @NotNull(message = "Conta não pode ser nulo")
     public Integer conta;
+    @NotNull(message = "Saldo em conta")
+    public Double saldo;
+    @NotNull(message = "Nome não pode ser nulo")
     public String nome;
+
+    @NotNull(message = "CPF não pode ser nulo")
+    @Column(unique=true)
     public String cpf;
 
-    public Conta(Integer conta, String nome, String cpf) {
-        this.conta = conta;
+    public Conta( String nome, String cpf) {
         this.nome = nome;
         this.cpf = cpf;
     }
@@ -29,6 +43,17 @@ public class Conta {
         this.id = id;
     }
     public Conta() {
+    }
+
+    public Conta(Long id, Double saldo) {
+        this.id = id;
+        this.saldo = saldo;
+    }
+
+    public Conta(String nome, String cpf, Double saldo) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.saldo = saldo;
     }
 
     public Long getId() {
