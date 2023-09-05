@@ -28,8 +28,8 @@ public class TransacaoService {
 
         transacaoDTO.setValor(setValueForTransactionType(transacaoDTO.valor, transacaoDTO.tipoOperacao));
         Optional<Conta> conta = contaRepository.findById(transacaoDTO.contaId);
-        if (conta.get().saldo + transacaoDTO.valor >= 0) {
-            contaRepository.save(new Conta(transacaoDTO.contaId,conta.get().saldo + transacaoDTO.valor));
+        if (conta.get().limite + transacaoDTO.valor >= 0) {
+            contaRepository.save(new Conta(transacaoDTO.contaId,conta.get().limite + transacaoDTO.valor));
             return transacaoRepository.save(
                     new Transacao(
                             new Conta(transacaoDTO.contaId),

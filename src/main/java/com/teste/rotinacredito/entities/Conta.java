@@ -5,8 +5,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.annotations.Generated;
 import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.List;
+import java.util.Date;
 
 @Entity
 @Table(name="conta")
@@ -18,10 +20,14 @@ public class Conta {
     @Generated(GenerationTime.INSERT)
     @NotNull(message = "Conta não pode ser nulo")
     public Integer conta;
-    @NotNull(message = "Saldo em conta")
-    public Double saldo;
+    @NotNull(message = "Limite em conta")
+    public Double limite;
     @NotNull(message = "Nome não pode ser nulo")
     public String nome;
+
+    @NotNull (message = "Data de alteração de limite")
+    @UpdateTimestamp
+    public Date dataLimite;
 
     @NotNull(message = "CPF não pode ser nulo")
     @Column(unique=true)
@@ -45,15 +51,24 @@ public class Conta {
     public Conta() {
     }
 
-    public Conta(Long id, Double saldo) {
+    public Conta(Long id, Double limite) {
         this.id = id;
-        this.saldo = saldo;
+        this.limite = limite;
     }
 
-    public Conta(String nome, String cpf, Double saldo) {
+    public Conta(String nome, String cpf, Double limite) {
         this.nome = nome;
         this.cpf = cpf;
-        this.saldo = saldo;
+        this.limite = limite;
+    }
+
+    public Conta(Long id, Integer conta, Double limite, String nome, Date dataLimite, String cpf) {
+        this.id = id;
+        this.conta = conta;
+        this.limite = limite;
+        this.nome = nome;
+        this.dataLimite = dataLimite;
+        this.cpf = cpf;
     }
 
     public Long getId() {
