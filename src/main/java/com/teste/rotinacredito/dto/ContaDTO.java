@@ -5,15 +5,15 @@ public class ContaDTO {
     public String nome;
     public String cpf;
 
-    public Double getSaldo() {
-        return saldo;
+    public Double getLimite() {
+        return limite;
     }
 
-    public void setSaldo(Double saldo) {
-        this.saldo = saldo;
+    public void setLimite(Double limite) {
+        this.limite = limite;
     }
 
-    public Double saldo;
+    public Double limite;
 
     public String getNome() {
         return nome;
@@ -30,6 +30,5 @@ public class ContaDTO {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-
 
 }
